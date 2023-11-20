@@ -1,0 +1,232 @@
+dckr_pat_5ECMn4nKCciVHbHfdUUIW8Qd5jc
+
+http://localhost:8100/currency-conversion/from/EUR/to/INR/quantity/10
+http://localhost:8000/currency-exchange/from/EUR/to/INR
+
+docker run -p 8000:8000 --name=currency-exchange anitharajam/currency-exchange:0.0.1.RELEASE
+docker run -p 8100:8000 --name=currency-conversion anitharajam/currency-conversion:0.0.1.RELEASE
+docker run -p 8100:8000 --env CURRENCY_EXCHANGE_SERVICE_HOST=http://currency-exchange --name=currency-conversion --link currency-exchange anitharajam/currency-conversion:0.0.1.RELEASE
+
+##Docker Commands #####
+
+$docker 
+$docker version
+$docker info
+$docker pull hello-world
+$docker images
+$docker run hello-world
+$docker-compose
+$docker-componse up / down
+$docker-engine ip
+
+$docker run -p 5000:5000 myrepo/hellow-world-nodejs:0.0.1.RELEASE
+
+
+docker --version
+docker run -p 5000:5000 myrepo/hello-world-python:0.0.1.RELEASE
+docker run -p 5000:5000 myrepo/hello-world-java:0.0.1.RELEASE
+docker run -p 5000:5000 myrepo/hello-world-nodejs:0.0.1.RELEASE
+docker run -d -p 5000:5000 myrepo/hello-world-nodejs:0.0.1.RELEASE
+docker run -d -p 5001:5000 myrepo/hello-world-python:0.0.1.RELEASE
+docker logs 04e52ff9270f5810eefe1f77222852dc1461c22440d4ecd6228b5c38f09d838e
+docker logs c2ba
+docker images
+docker container ls
+docker container ls -a
+docker container stop f708b7ee1a8b
+docker run -d -p 5001:8080 myrepo/hello-world-rest-api:0.0.1.RELEASE
+docker pull mysql
+docker search mysql
+docker image history myrepo/hello-world-java:0.0.1.RELEASE
+docker image history 100229ba687e
+docker image inspect 100229ba687e
+docker image remove mysql
+docker image remove myrepo/hello-world-java:0.0.1.RELEASE
+docker container rm 3e657ae9bd16
+docker container ls -a
+docker container pause 832
+docker container unpause 832
+docker container stop 832
+docker container inspect ff521fa58db3
+docker container prune
+docker system
+docker system df
+docker system info
+docker system prune -a
+docker top 9009722eac4d
+docker stats 9009722eac4d
+docker container run -p 5000:5000 -d -m 512m myrepo/hello-world-java:0.0.1.RELEASE
+docker container run -p 5000:5000 -d -m 512m --cpu-quota=50000  myrepo/hello-world-java:0.0.1.RELEASE
+docker system events
+ 
+docker container stats 4faca1ea914e3e4587d1d790948ec6cb8fa34f26e900c12632fd64d4722fd59a
+docker stats 42f170966ce613d2a16d7404495af7b3295e01aeb9142e1fa1762bbdc581f502
+ 
+cd /myrepo/git/devops-master-class/projects/hello-world/hello-world-python 
+docker build -t myrepo/hello-world-python:0.0.2.RELEASE . 
+docker run -p 5000:5000 -d myrepo/hello-world-python:0.0.2.RELEASE
+docker history e66dc383f7a0
+docker push myrepo/hello-world-python:0.0.2.RELEASE
+ 
+cd ../hello-world-nodejs/
+docker build -t myrepo/hello-world-nodejs:0.0.2.RELEASE . 
+docker container run -d -p 5000:5000 myrepo/hello-world-nodejs:0.0.2.RELEASE
+docker push myrepo/hello-world-nodejs:0.0.2.RELEASE
+ 
+cd ../hello-world-java/
+docker build -t myrepo/hello-world-java:0.0.2.RELEASE . 
+docker run -d -p 5000:5000 myrepo/hello-world-java:0.0.2.RELEASE
+docker push myrepo/hello-world-java:0.0.2.RELEASE
+ 
+docker run -d -p 5001:5000 myrepo/hello-world-nodejs:0.0.3.RELEASE ping google.com
+ 
+ 
+docker run -d -p 8000:8000 --name=currency-exchange myrepo/currency-exchange:0.0.1-RELEASE
+docker run -d -p 8100:8100 --name=currency-conversion myrepo/currency-conversion:0.0.1-RELEASE
+ 
+docker network ls
+docker network inspect bridge
+ 
+docker run -d -p 8100:8100 --env CURRENCY_EXCHANGE_SERVICE_HOST=http://currency-exchange --name=currency-conversion --link currency-exchange myrepo/currency-conversion:0.0.1-RELEASE
+ 
+docker network create currency-network
+docker container stop currency-exchange
+docker container stop currency-conversion
+docker run -d -p 8000:8000 --name=currency-exchange --network=currency-network myrepo/currency-exchange:0.0.1-RELEASE
+docker run -d -p 8100:8100 --env CURRENCY_EXCHANGE_SERVICE_HOST=http://currency-exchange --name=currency-conversion --network=currency-network myrepo/currency-conversion:0.0.1-RELEASE
+ 
+docker-compose --version
+cd ../../microservices/
+docker-compose up
+docker-compose up -d
+docker container ls
+docker network ls
+docker network inspect microservices_currency-compose-network
+docker-compose down
+docker container ls -a
+docker system prune -a
+docker-compose config
+docker-compose images
+docker-compose ps
+docker-compose top
+ 
+docker build -t myrepo/hello-world-java:0.0.1.RELEASE .
+docker push myrepo/hello-world-java:0.0.1.RELEASE
+ 
+docker build -t myrepo/hello-world-python:0.0.1.RELEASE .
+docker push myrepo/hello-world-python:0.0.1.RELEASE
+ 
+docker build -t myrepo/hello-world-nodejs:0.0.1.RELEASE .
+docker push myrepo/hello-world-nodejs:0.0.1.RELEASE
+
+docker run -p 8080:8080 myrepo/hello-world-rest-api:0.0.1.RELEASE
+
+### k8s ###
+ 
+kubectl create deployment hello-world-rest-api --image=myrepo/hello-world-rest-api:0.0.1.RELEASE
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+kubectl scale deployment hello-world-rest-api --replicas=3
+kubectl delete pod hello-world-rest-api-58ff5dd898-62l9d
+kubectl autoscale deployment hello-world-rest-api --max=10 --cpu-percent=70
+kubectl edit deployment hello-world-rest-api #minReadySeconds: 15
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=myrepo/hello-world-rest-api:0.0.2.RELEASE
+ 
+gcloud container clusters get-credentials my-cluster --zone us-central1-a --project solid-course-258105
+kubectl create deployment hello-world-rest-api --image=myrepo/hello-world-rest-api:0.0.1.RELEASE
+kubectl expose deployment hello-world-rest-api --type=LoadBalancer --port=8080
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=myrepo/hello-world-rest-api:0.0.2.RELEASE
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl get componentstatuses
+kubectl get pods --all-namespaces
+ 
+kubectl get events
+kubectl get pods
+kubectl get replicaset
+kubectl get deployment
+kubectl get service
+ 
+kubectl get pods -o wide
+ 
+kubectl explain pods
+kubectl get pods -o wide
+ 
+kubectl describe pod hello-world-rest-api-58ff5dd898-9trh2
+ 
+kubectl get replicasets
+kubectl get replicaset
+ 
+kubectl scale deployment hello-world-rest-api --replicas=3
+kubectl get pods
+kubectl get replicaset
+kubectl get events
+kubectl get events --sort.by=.metadata.creationTimestamp
+ 
+kubectl get rs
+kubectl get rs -o wide
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=DUMMY_IMAGE:TEST
+kubectl get rs -o wide
+kubectl get pods
+kubectl describe pod hello-world-rest-api-85995ddd5c-msjsm
+kubectl get events --sort-by=.metadata.creationTimestamp
+ 
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=myrepo/hello-world-rest-api:0.0.2.RELEASE
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl get pods -o wide
+kubectl delete pod hello-world-rest-api-67c79fd44f-n6c7l
+kubectl get pods -o wide
+kubectl delete pod hello-world-rest-api-67c79fd44f-8bhdt
+ 
+kubectl get componentstatuses
+kubectl get pods --all-namespaces
+ 
+gcloud auth login
+kubectl version
+gcloud container clusters get-credentials my-cluster --zone us-central1-a --project solid-course-258105
+ 
+kubectl rollout history deployment hello-world-rest-api
+kubectl set image deployment hello-world-rest-api hello-world-rest-api=myrepo/hello-world-rest-api:0.0.3.RELEASE --record=true
+kubectl rollout undo deployment hello-world-rest-api --to-revision=1
+ 
+kubectl logs hello-world-rest-api-58ff5dd898-6ctr2
+kubectl logs -f hello-world-rest-api-58ff5dd898-6ctr2
+ 
+kubectl get deployment hello-world-rest-api -o yaml
+kubectl get deployment hello-world-rest-api -o yaml > deployment.yaml
+kubectl get service hello-world-rest-api -o yaml > service.yaml
+kubectl apply -f deployment.yaml
+kubectl get all -o wide
+kubectl delete all -l app=hello-world-rest-api
+ 
+kubectl get svc --watch
+kubectl diff -f deployment.yaml
+kubectl delete deployment hello-world-rest-api
+kubectl get all -o wide
+kubectl delete replicaset.apps/hello-world-rest-api-797dd4b5dc
+ 
+kubectl get pods --all-namespaces
+kubectl get pods --all-namespaces -l app=hello-world-rest-api
+kubectl get services --all-namespaces
+kubectl get services --all-namespaces --sort-by=.spec.type
+kubectl get services --all-namespaces --sort-by=.metadata.name
+kubectl cluster-info
+kubectl cluster-info dump
+kubectl top node
+kubectl top pod
+kubectl get services
+kubectl get svc
+kubectl get ev
+kubectl get rs
+kubectl get ns
+kubectl get nodes
+kubectl get no
+kubectl get pods
+kubectl get po
+ 
+kubectl delete all -l app=hello-world-rest-api
+kubectl get all
+ 
+kubectl apply -f deployment.yaml 
+kubectl apply -f ../currency-conversion/deployment.yaml 
+
